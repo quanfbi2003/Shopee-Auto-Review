@@ -11,6 +11,7 @@ if (!globalThis.__shopeeAutoReviewInspector &&
   let submitPending = false;
   let expectedItems = null;
   let pending = null;
+  let enabled = true;
   const {loadImage, makeVideo} = globalThis.shopeeReviewMedia;
   const {composeReview, assertReady, runGroup, groupReviewItems, mapFormItems, isPurchaseListPath} = globalThis.shopeeReviewRules;
   const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
@@ -282,7 +283,7 @@ if (!globalThis.__shopeeAutoReviewInspector &&
   }
 
   async function run() {
-    if (!toggle.checked || blocked || running) return;
+    if (!enabled || blocked || running) return;
     if (form() || document.hidden) {
       error.textContent = 'Đóng biểu mẫu và giữ tab Shopee hiển thị trước khi chạy.';
       error.hidden = false;
@@ -352,12 +353,6 @@ if (!globalThis.__shopeeAutoReviewInspector &&
     borderRadius: '8px', width: '270px', boxShadow: '0 3px 12px #0003', font: '14px/1.4 system-ui'});
   const heading = document.createElement('strong');
   heading.textContent = 'Shopee Auto Review';
-  const toggleLabel = document.createElement('label');
-  toggleLabel.style.cssText = 'display:flex;align-items:center;gap:6px;margin:8px 0 4px;cursor:pointer';
-  const toggle = document.createElement('input');
-  toggle.type = 'checkbox';
-  toggle.checked = true;
-  toggleLabel.append(toggle, document.createTextNode('Bật extension'));
   const start = document.createElement('button');
   start.type = 'button';
   start.textContent = 'Bắt đầu tự đánh giá';
@@ -374,19 +369,20 @@ if (!globalThis.__shopeeAutoReviewInspector &&
   error.setAttribute('role', 'alert');
   error.hidden = true;
   error.style.color = '#a22020';
-  panel.append(heading, toggleLabel, document.createElement('br'), start, stop, status, error);
+  panel.append(heading, document.createElement('br'), start, stop, status, error);
   document.body.append(panel);
   let running = false;
   let activeController = null;
   start.addEventListener('click', () => { if (!start.disabled && !running) run(); });
-  toggle.addEventListener('change', () => {
-    if (!toggle.checked) {
+  function setEnabled(on) {
+    enabled = on;
+    panel.hidden = !on;
+    if (!on) {
       if (running) {
         blocked = true;
         activeController?.abort(new Error('Đã tắt extension.'));
       }
       start.disabled = true;
-      status.textContent = 'Đã tắt extension. Bật lại để đánh giá tiếp.';
       return;
     }
     if (blocked) {
@@ -394,8 +390,12 @@ if (!globalThis.__shopeeAutoReviewInspector &&
       status.textContent = 'Cần tải lại trang Shopee trước khi bật lại extension.';
       return;
     }
-    start.disabled = false;
+    start.disabled = running;
     status.textContent = 'Sẵn sàng. Bắt đầu sẽ gửi từng đơn sau khi Shopee xác nhận đủ ảnh và video.';
+  }
+  chrome.storage.local.get({enabled: true}).then(({enabled: on}) => setEnabled(!!on));
+  chrome.storage.onChanged.addListener((changes, area) => {
+    if (area === 'local' && changes.enabled) setEnabled(!!changes.enabled.newValue);
   });
   stop.addEventListener('click', () => {
     if (!running) return;

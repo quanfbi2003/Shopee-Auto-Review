@@ -3,7 +3,11 @@
   "name": "Shopee Auto Review",
   "version": "0.2.0",
   "description": "Tự đánh giá Shopee bằng thao tác trực tiếp trên giao diện trong Edge.",
-  "permissions": [],
+  "permissions": ["storage"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Shopee Auto Review"
+  },
   "content_scripts": [
     {
       "matches": [

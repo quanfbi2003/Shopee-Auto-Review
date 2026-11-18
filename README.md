@@ -24,8 +24,8 @@ Sau mỗi lần cập nhật mã, bấm **Reload** ở `edge://extensions` rồi
 
 ## Sử dụng
 
-- **Bật extension**: bật/tắt extension. Khi tắt, lượt đang chạy dừng lại và không thể bấm Bắt đầu; bật lại để chạy tiếp (cần tải lại trang nếu lượt trước đã dừng vì lỗi hoặc đã bấm Dừng).
-- **Bắt đầu tự đánh giá**: chạy tuần tự các đơn còn nút Đánh Giá.
+- **Bật extension** (trong popup khi bấm icon trên thanh công cụ): bật/tắt extension. Khi tắt, bảng điều khiển trên trang ẩn đi và lượt đang chạy dừng lại; bật lại rồi tải lại trang Shopee nếu lượt trước đã dừng vì lỗi hoặc đã bấm Dừng.
+- **Bắt đầu tự đánh giá** (bảng trên trang Shopee): chạy tuần tự các đơn còn nút Đánh Giá.
 - **Dừng**: ngăn các thao tác mới. Thao tác gửi đã thực hiện thì không thể thu hồi.
 
 Giữ tab Shopee hiển thị trong lúc chạy: Edge có thể tạm dừng tạo video khi tab bị ẩn. Sau khi dừng hoặc gặp lỗi, tải lại trang trước khi chạy lượt mới.

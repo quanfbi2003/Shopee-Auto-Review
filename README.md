@@ -52,15 +52,6 @@ Giữ tab Shopee hiển thị trong lúc chạy: Edge có thể tạm dừng t�
 - Không đọc, không lưu cookie, mật khẩu, địa chỉ nhận hàng hay lịch sử đơn.
 - Video được tạo trong trình duyệt, không gửi tới dịch vụ chuyển mã bên ngoài.
 
-## Kiểm thử
-
-Không cần cài dependency hay build:
-
-```bash
-node tests/check.mjs
-node --check content.js && node --check rules.js && node --check media.js
-```
-
 ## Đóng góp
 
 Mở issue hoặc pull request mô tả rõ thay đổi. Vì extension phụ thuộc giao diện Shopee, hãy kèm cấu trúc DOM hoặc thông báo lỗi khi báo lỗi.

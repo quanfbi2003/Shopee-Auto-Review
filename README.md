@@ -68,3 +68,7 @@ Mở issue hoặc pull request mô tả rõ thay đổi. Vì extension phụ thu
 ## Miễn trừ trách nhiệm
 
 Phần mềm được cung cấp "nguyên trạng", không bảo đảm hoạt động liên tục hay không bị Shopee thay đổi làm ảnh hưởng. Tác giả không chịu trách nhiệm cho việc tài khoản bị hạn chế hoặc bất kỳ thiệt hại nào phát sinh từ việc sử dụng.
+
+## Giấy phép
+
+Phát hành theo [MIT License](LICENSE).

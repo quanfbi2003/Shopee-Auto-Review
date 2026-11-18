@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Shopee Auto Review",
+  "version": "0.2.0",
+  "description": "Tự đánh giá Shopee bằng thao tác trực tiếp trên giao diện trong Edge.",
+  "permissions": [],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://shopee.vn/user/purchase*"
+      ],
+      "js": [
+        "rules.js",
+        "media.js",
+        "content.js"
+      ]
+    }
+  ],
+  "host_permissions": [
+    "https://shopee.vn/*",
+    "https://down-vn.img.susercontent.com/*"
+  ]
+}

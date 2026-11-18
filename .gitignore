@@ -1,0 +1,6 @@
+/.claude/
+/.playwright-mcp/
+/.vscode/
+__pycache__/
+*.log
+/Shopee-Auto-Review-*.zip
